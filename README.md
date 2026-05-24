@@ -10,9 +10,9 @@ The document describes a step by step process in desigining the architecture of 
 # Prerequistics
 
 1. Kubectl and eksctl has to be installed on the system as it helps the user to interact with the cluster and create VPC , roles , subnets and required configuration while creating EKS Cluster.
-2. Ensure Docker Desktop is running as background process , helpful in solving instructions written in dockerfile.
+2. Ensure Docker Desktop is running as background process , while solving instructions written in dockerfile.
 3. Install AWS CLI and configure credentials.
-4. Create a IAM User on AWS and gives permisions , Userful while creating EKS cluster.
+4. Create a IAM User on AWS and gave permissions while creating EKS cluster.
 
 # Steps
 1. Verify AWS Connectivity: Verify whether the local machine is connected to AWS properly. 
@@ -79,15 +79,15 @@ The document describes a step by step process in desigining the architecture of 
 
 1. Ingress is currently configured using the default NGINX Ingress Controller without TLS enabled. In production environments, TLS certificates should be configured at the ingress layer so that HTTPS encryption and SSL termination happen at the ingress itself. Internal communication inside the cluster can continue over HTTP or later be secured further using mTLS/service mesh solutions such as Istio.
 
-2.Currently, the containers are running with root privileges, which can introduce security risks in production environments. Running applications as root inside containers increases the impact surface if a container is compromised. In production, Kubernetes securityContext should be configured to run containers as non-root users with restricted privileges, read-only file systems, and limited Linux capabilities to improve workload isolation and overall cluster security.
+2. Currently, the containers are running with root privileges, which can introduce security risks in production environments. Running applications as root inside containers increases the impact surface if a container is compromised. In production, Kubernetes securityContext should be configured to run containers as non-root users with restricted privileges, read-only file systems, and limited Linux capabilities to improve workload isolation and overall cluster security.
 
-3.  Network policies: Its lets user to define instructions how the traffic flow within the cluster, service or pods. It helps us to secure the pod to pod, IP or Port communication.
+3. Network policies: Its lets user to define instructions how the traffic flow within the cluster, service or pods. It helps us to secure the pod to pod, IP or Port communication.
 
 4. Stateful Sets and Daemon Sets: Redis and Kafka services needs stable network connectivity and defined memory also Daemon sets can be attached to Backend application for logging and monitoring .
 
 5. Istio: Istio comes with variety of functionalities, But 4 core are the most important i.e.: COSR means Connectivity , Observability , Security and Resilience. Mtls helps in securing the ingress and egress flow and it send telemetry to IstioD that can helps us with distributed tracing . 
 
-    Scale in Istio: As sidecar containers interact with ISTIOD continuously and sends the telemetry to ISTIOD components its necessary to create multiple ISTIOD components and need to scale because in future the with new microservices complexity can increase.
+    Scale in Istio: As sidecar containers interact with ISTIOD continuously and sends the telemetry to ISTIOD components its necessary to create multiple ISTIOD components and need to scale because in future the with new      microservices complexity can increase.
 
     In production - Systems :
 
@@ -105,13 +105,11 @@ The document describes a step by step process in desigining the architecture of 
 
 9. Distributed Tracing: For end to end request tracing , latency , response times , services communication and health I'll either implement Kiali or Using Dynatrace. I’ll also implement SLI, defines what makes our system healthy and set SLO(Targets ) for System to be uptime and deployments making sure bad deployments doesn’t affects our operations keeping system scalability and user experience in mind.
 
-    Dynatrace: Dynatrace comes up with lot of features, Workflow (Alerting ) , Dashboard, Log Ingestion Pipelines and One Agent (monitor individual state of application). Distributed tracing, Davis AI (Using smart topology and Root tree analysis) helps the Teams to understand what's the exact cause of failure is. It connects number of events internally and prepares a detailed report report tells you where the root cause is. Helps us in reduced the MTTR for recovery during critical times.
+ Dynatrace: Dynatrace comes up with lot of features, Workflow (Alerting ) , Dashboard, Log Ingestion Pipelines and One Agent (monitor individual state of application). Distributed tracing, Davis AI (Using smart        topology and Root tree analysis) helps the Teams to understand what's the exact cause of failure is. It connects number of events internally and prepares a detailed report report tells you where the root cause is. Helps us in reduced the MTTR for recovery during critical times.
 
 10. Horizontal Pod Autoscaling (HPA):   HPA allows Kubernetes to automatically scale application pods based on metrics such as CPU and memory usage. However, scaling is not always immediate, and during sudden traffic spikes new pods can take time to start, pull images, and become ready to serve requests.
 
-In production environments,to improve reliability, additional baseline pods can be kept running during expected high-traffic hours, weekends, campaigns, or product launches.
-
-Advanced scaling strategies such as predictive scaling, scheduled autoscaling, and cluster autoscaler integration can also be implemented to ensure faster workload handling and better resource optimization.
+In production environments,to improve reliability, additional baseline pods can be kept running during expected high-traffic hours, weekends, campaigns, or product launches. Advanced scaling strategies such as predictive scaling, scheduled autoscaling, and cluster autoscaler integration can also be implemented to ensure faster workload handling and better resource optimization.
 
 11. Use Multi Docker Image in productions with ARG NODE_ENV for specific ENV and a dedicated user inside container if needed .
 
