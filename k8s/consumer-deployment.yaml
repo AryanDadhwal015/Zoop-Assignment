@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-app
+  namespace: platform-assignment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer-app
+  template:
+    metadata:
+      labels:
+        app: consumer-app
+    spec:
+      containers:
+      - name: consumer-app
+        image: aryan132/backend-app:latest
+        command: [ "npm", "run", "consumer" ]
+        envFrom:
+        - configMapRef:
+            name: backend-config
