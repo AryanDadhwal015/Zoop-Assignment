@@ -16,28 +16,18 @@ The document describes a step by step process in desigining the architecture of 
 
 # Steps
 1. Verify AWS Connectivity: Verify whether the local machine is connected to AWS properly. 
-![Screenshot 143](Screenshots/Screenshot%20(143).png)
 
 2. Create EKS Cluster: Using eksctl , gives instructions to AWS to automatically create required config for AWS EKS .
-![Screenshot 151](Screenshots/Screenshot%20(151).png)
-![Screenshot 152](Screenshots/Screenshot%20(152).png)
 
 3. Update kubeconfig so kubectl can interact with the EKS cluster.
-![Screenshot 153](Screenshots/Screenshot%20(153).png)
 
 4. Verify whether the cluster is successfully created.
-![Screenshot 148](Screenshots/Screenshot%20(148).png)
-![Screenshot 148](Screenshots/Screenshot%20(150).png)
-![Screenshot 148](Screenshots/Screenshot%20(155).png)
 
 5. Move to application directory and build Docker image.
-![Screenshot 148](Screenshots/Screenshot%20(156).png)
 
 6. Tag and push Docker image to DockerHub.
-![Screenshot 148](Screenshots/Screenshot%20(169).png)
   
 7. Install NGINX Ingress Controller
-![Screenshot 143](Screenshots/Screenshot%20(163).png)
 
 8. Deploy all Kubernetes resources.
     -- backend-deployment.yaml
@@ -49,29 +39,27 @@ The document describes a step by step process in desigining the architecture of 
     -- redis.yaml
     -- secret.yaml
     -- zookeeper.yaml
-![Screenshot 148](Screenshots/Screenshot%20(158).png)
 
 9. Verify Pods and Services in namespace platform-assignment.
-![Screenshot 148](Screenshots/Screenshot%20(161).png)
 
 10. Verify the ingress resource.
-![Screenshot 148](Screenshots/Screenshot%20(163).png)
+![Screenshot 148](Screenshots/Ingress.png)
 
 11. Validate the Health Check Endpoint
-![Screenshot 148](Screenshots/Screenshot%20(164).png)
+![Screenshot 148](Screenshots/HealthCheck.png)
 
 12. Validates the Connectivity of Redis Cache 
-![Screenshot 148](Screenshots/Screenshot%20(165).png)
+![Screenshot 148](Screenshots/Redis_Success.png)
 
 13. Validate Kafka Event Publishing.
-![Screenshot 148](Screenshots/Screenshot%20(166).png)
+![Screenshot 148](Screenshots/Counter_Increment.png)
 
 14. Validate Consumer Logs
-![Screenshot 148](Screenshots/Screenshot%20(167).png)
+![Screenshot 148](Screenshots/Consumer.png)
 # Challenges 
 
 1. CrashLoopBackOff : Kafka failed during startup because required environment variables were missing. Updated the image: confluentinc/cp-kafka:7.3.0 and add env variables KAFKA_LISTENERS and KAFKA_PROCESS_ROLES.
-![Screenshot 143](Screenshots/Screenshot%20(159).png)
+![Screenshot 143](Screenshots/Error_Pods.png)
 
 2. Ingress Returning 404 : It was expecting Host name we defined in Ingress Resource . While making a curl to specific endpoint we added Host and alb address.
 
@@ -116,5 +104,5 @@ In production environments,to improve reliability, additional baseline pods can 
 
 # Zoop Architecure Diagram
 
-![Screenshot 148](Screenshots/Screenshot%20(170).png)
-![Screenshot 148](Screenshots/Screenshot%20(171).png)
+![Screenshot 148](Screenshots/Zoop_Architecture.png)
+![Screenshot 148](Screenshots/HighLevel_Diagram.png)
