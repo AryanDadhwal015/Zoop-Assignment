@@ -37,6 +37,7 @@ The document describes a step by step process in desigining the architecture of 
 ![Screenshot 148](Screenshots/Screenshot%20(169).png)
   
 7. Install NGINX Ingress Controller
+![Screenshot 143](Screenshots/Screenshot%20(163).png)
 
 8. Deploy all Kubernetes resources.
     -- backend-deployment.yaml
