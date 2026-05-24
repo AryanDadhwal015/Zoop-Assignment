@@ -70,7 +70,8 @@ The document describes a step by step process in desigining the architecture of 
 ![Screenshot 148](Screenshots/Screenshot%20(167).png)
 # Challenges 
 
-1. CrashLoopBackOff : Kafka failed during startup because required environment variables were missing. Updated the image: confluentinc/cp-kafka:7.3.0 and add env variables KAFKA_LISTENERS
+1. CrashLoopBackOff : Kafka failed during startup because required environment variables were missing. Updated the image: confluentinc/cp-kafka:7.3.0 and add env variables KAFKA_LISTENERS and KAFKA_PROCESS_ROLES.
+![Screenshot 143](Screenshots/Screenshot%20(159).png)
 
 2. Ingress Returning 404 : It was expecting Host name we defined in Ingress Resource . While making a curl to specific endpoint we added Host and alb address.
 
