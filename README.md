@@ -16,20 +16,28 @@ The document describes a step by step process in desigining the architecture of 
 
 # Steps
 1. Verify AWS Connectivity: Verify whether the local machine is connected to AWS properly. 
+![Screenshot 143](Screenshots/Identity_Verifying.png)
 
 2. Create EKS Cluster: Using eksctl , gives instructions to AWS to automatically create required config for AWS EKS .
+![Screenshot 143](Screenshots/Eksctl.png)
+![Screenshot 143](Screenshots/Eksctl-cluster-success.png)
 
 3. Update kubeconfig so kubectl can interact with the EKS cluster.
+![Screenshot 143](Screenshots/Kubeconfig_update.png)
 
-4. Verify whether the cluster is successfully created.
+5. Verify whether the cluster is successfully created.
+![Screenshot 143](Screenshots/EKS_Cluster.png)
 
-5. Move to application directory and build Docker image.
+6. Move to application directory and build Docker image.
+![Screenshot 143](Screenshots/Docker_Build.png)
 
-6. Tag and push Docker image to DockerHub.
-  
-7. Install NGINX Ingress Controller
+7. Tag and push Docker image to DockerHub.
+![Screenshot 143](Screenshots/Docker_Registry.png)  
 
-8. Deploy all Kubernetes resources.
+8. Install NGINX Ingress Controller
+![Screenshot 143](Screenshots/Ingress_Controller.png)
+
+9. Deploy all Kubernetes resources.
     -- backend-deployment.yaml
     -- backend-service.yaml
     -- configmap.yaml
@@ -40,21 +48,25 @@ The document describes a step by step process in desigining the architecture of 
     -- secret.yaml
     -- zookeeper.yaml
 
-9. Verify Pods and Services in namespace platform-assignment.
+![Screenshot 143](Screenshots/Kubernetes_Manifest.png)
 
-10. Verify the ingress resource.
+10. Verify Pods and Services in namespace platform-assignment.
+
+![Screenshot 143](Screenshots/Deploy and Svc.png)
+
+11. Verify the ingress resource.
 ![Screenshot 148](Screenshots/Ingress.png)
 
-11. Validate the Health Check Endpoint
+12. Validate the Health Check Endpoint
 ![Screenshot 148](Screenshots/HealthCheck.png)
 
-12. Validates the Connectivity of Redis Cache 
+13. Validates the Connectivity of Redis Cache 
 ![Screenshot 148](Screenshots/Redis_Success.png)
 
-13. Validate Kafka Event Publishing.
+14. Validate Kafka Event Publishing.
 ![Screenshot 148](Screenshots/Counter_Increment.png)
 
-14. Validate Consumer Logs
+15. Validate Consumer Logs
 ![Screenshot 148](Screenshots/Consumer.png)
 # Challenges 
 
