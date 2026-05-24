@@ -76,11 +76,11 @@ The document describes a step by step process in desigining the architecture of 
 
 # Production-Level Improvements
 
-1. Ingress currently is the default them nginx, later we need to add the Tls so that that encryption can happen at ingress and  plain http request goes into the cluster .
+1. Ingress is currently configured using the default NGINX Ingress Controller without TLS enabled. In production environments, TLS certificates should be configured at the ingress layer so that HTTPS encryption and SSL termination happen at the ingress itself. Internal communication inside the cluster can continue over HTTP or later be secured further using mTLS/service mesh solutions such as Istio.
 
-2. Currently deployment files are running as the same host and PID as root which is a security user risk. By default, Kubernetes maps your User , running inside pods UID and PID with host and thus it can affect the security of pods. As a result, running them with different users ID is a good option.
+2.Currently, the containers are running with root privileges, which can introduce security risks in production environments. Running applications as root inside containers increases the impact surface if a container is compromised. In production, Kubernetes securityContext should be configured to run containers as non-root users with restricted privileges, read-only file systems, and limited Linux capabilities to improve workload isolation and overall cluster security.
 
-3.  Network policies: Its lets you to define instructions how the traffic flow is within your cluster, service or pods communication. helps us to secure the pod to pod, IP or Port communication. 
+3.  Network policies: Its lets user to define instructions how the traffic flow within the cluster, service or pods. It helps us to secure the pod to pod, IP or Port communication.
 
 4. Stateful Sets and Daemon Sets: Redis and Kafka services needs stable network connectivity and defined memory also Daemon sets can be attached to Backend application for logging and monitoring .
 
