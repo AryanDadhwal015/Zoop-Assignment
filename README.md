@@ -5,11 +5,7 @@ Zoop - Mini Backend Setup Assignment
 The document describes a step by step process in desigining the architecture of a mini backend system setup on AWS EKS. The project is divided into three parts; Backend Logic , Deployment and AWS Setup. The project demonstrates a event-driven backend application integrated with Redis and Kafka . User sends a request to increment the counter, the backend application updates the counter values in Redis and then Publishes an event to Kafka . Consumers are continously listening to Kafka and processes incoming event by printing them into logs.
 
 # Architecture
-
-User --> Send Request --> ALB --> Ingress Controller(Nginx) --> Ingress Resource(Instructions) --> Svc --> Backend Pods --> Push Event to Kafka <--> Consumer(Print Logs ,)
-                                                                                                                |   
-                                                                                                                |
-                                                                                                            Redis(Increment Counter)
+![Screenshot 143](Screenshots/Screenshot%20(26).png)
 
 # Prerequistics
 
@@ -20,17 +16,26 @@ User --> Send Request --> ALB --> Ingress Controller(Nginx) --> Ingress Resource
 
 # Steps
 1. Verify AWS Connectivity: Verify whether the local machine is connected to AWS properly. 
+![Screenshot 143](Screenshots/Screenshot%20(143).png)
 
 2. Create EKS Cluster: Using eksctl , gives instructions to AWS to automatically create required config for AWS EKS .
+![Screenshot 151](Screenshots/Screenshot%20(151).png)
+![Screenshot 152](Screenshots/Screenshot%20(152).png)
 
 3. Update kubeconfig so kubectl can interact with the EKS cluster.
+![Screenshot 153](Screenshots/Screenshot%20(153).png)
 
 4. Verify whether the cluster is successfully created.
+![Screenshot 148](Screenshots/Screenshot%20(148).png)
+![Screenshot 148](Screenshots/Screenshot%20(150).png)
+![Screenshot 148](Screenshots/Screenshot%20(155).png)
 
 5. Move to application directory and build Docker image.
+![Screenshot 148](Screenshots/Screenshot%20(156).png)
 
 6. Tag and push Docker image to DockerHub.
-
+![Screenshot 148](Screenshots/Screenshot%20(169).png)
+  
 7. Install NGINX Ingress Controller
 
 8. Deploy all Kubernetes resources.
@@ -43,19 +48,25 @@ User --> Send Request --> ALB --> Ingress Controller(Nginx) --> Ingress Resource
     -- redis.yaml
     -- secret.yaml
     -- zookeeper.yaml
+![Screenshot 148](Screenshots/Screenshot%20(158).png)
 
 9. Verify Pods and Services in namespace platform-assignment.
+![Screenshot 148](Screenshots/Screenshot%20(161).png)
 
 10. Verify the ingress resource.
+![Screenshot 148](Screenshots/Screenshot%20(163).png)
 
 11. Validate the Health Check Endpoint
+![Screenshot 148](Screenshots/Screenshot%20(164).png)
 
 12. Validates the Connectivity of Redis Cache 
+![Screenshot 148](Screenshots/Screenshot%20(165).png)
 
 13. Validate Kafka Event Publishing.
+![Screenshot 148](Screenshots/Screenshot%20(166).png)
 
 14. Validate Consumer Logs
-
+![Screenshot 148](Screenshots/Screenshot%20(167).png)
 # Challenges 
 
 1. CrashLoopBackOff : Kafka failed during startup because required environment variables were missing. Updated the image: confluentinc/cp-kafka:7.3.0 and add env variables KAFKA_LISTENERS
@@ -101,3 +112,9 @@ In production environments,to improve reliability, additional baseline pods can 
 Advanced scaling strategies such as predictive scaling, scheduled autoscaling, and cluster autoscaler integration can also be implemented to ensure faster workload handling and better resource optimization.
 
 11. Use Multi Docker Image in productions with ARG NODE_ENV for specific ENV and a dedicated user inside container if needed .
+
+
+# Zoop Architecure Diagram
+
+![Screenshot 148](Screenshots/Screenshot%20(170).png)
+![Screenshot 148](Screenshots/Screenshot%20(171).png)
