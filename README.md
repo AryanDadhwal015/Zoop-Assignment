@@ -5,7 +5,7 @@ Zoop - Mini Backend Setup Assignment
 The document describes a step by step process in desigining the architecture of a mini backend system setup on AWS EKS. The project is divided into three parts; Backend Logic , Deployment and AWS Setup. The project demonstrates a event-driven backend application integrated with Redis and Kafka . User sends a request to increment the counter, the backend application updates the counter values in Redis and then Publishes an event to Kafka . Consumers are continously listening to Kafka and processes incoming event by printing them into logs.
 
 # Architecture
-![Screenshot 143](Screenshots/Screenshot%20(26).png)
+![Screenshot 143](Screenshots/Assignment_Architecture.png)
 
 # Prerequistics
 
