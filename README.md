@@ -51,8 +51,7 @@ The document describes a step by step process in desigining the architecture of 
 ![Screenshot 143](Screenshots/Kubernetes_Manifest.png)
 
 10. Verify Pods and Services in namespace platform-assignment.
-
-![Screenshot 143](Screenshots/Deploy and Svc.png)
+![Screenshot 143](Screenshots/Deploy_anc_Svc.png)
 
 11. Verify the ingress resource.
 ![Screenshot 148](Screenshots/Ingress.png)
