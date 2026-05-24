@@ -87,7 +87,7 @@ The document describes a step by step process in desigining the architecture of 
 
 5. Istio: Istio comes with variety of functionalities, But 4 core are the most important i.e.: COSR means Connectivity , Observability , Security and Resilience. Mtls helps in securing the ingress and egress flow and it send telemetry to IstioD that can helps us with distributed tracing . 
 
-    Scale in Istio: As sidecar containers interact with ISTIOD continuously and sends the telemetry to ISTIOD components its necessary to create multiple ISTIOD components and need to scale because in future the with new      microservices complexity can increase.
+    Scale in Istio: As the number of microservices increases, sidecar proxies continuously communicate with ISTIOD for telemetry exchange. In large-scale environments, a single ISTIOD instance can become a bottleneck. Therefore, ISTIOD components should be horizontally scaled to handle increasing traffic, telemetry data while maintaining control plane stability and performance.
 
     In production - Systems :
 
@@ -97,9 +97,9 @@ The document describes a step by step process in desigining the architecture of 
     4. Timeouts: Timeout policies help prevent requests from waiting indefinitely for unhealthy or slow services
 
 
-6. Zero-Downtime deployments: Rolling updates are good but takes time to spin up the pods. In Zoop the connection of users with pods need to be consistent during streamig , I'll implement traffic shifting and connection draining policies to keep the old connections of users intact with pods and new connections will be shifted to newly created pods.
+6. Zero-Downtime deployments: Rolling updates are good but takes time to spin up the pods. In Zoop the connection of users with pods need to be consistent during streaming , I'll implement traffic shifting and connection draining policies to keep the old connections of users intact with pods and new connections will be shifted to newly created pods.
 
-7. Authentication and Authorization: Need to configure the Ingress with Third party tools like Okta for authentication of user request and identity.
+7. Authentication and Authorization: In production environments, ingress should be integrated with identity providers such as Okta, Keycloak, or OAuth-based authentication systems to validate incoming user requests and enforce proper authentication and authorization policies. This helps secure APIs, manage user identity, and control access to protected services.
 
 8. Secrets: Currently in the project secrets are stored in .Yaml file encoded using Base64 . In production, I'll use Secret Manager or services like vault to store our secrets .
 
